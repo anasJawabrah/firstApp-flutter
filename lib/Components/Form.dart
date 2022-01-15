@@ -22,7 +22,11 @@ class _TodoFormState extends State<TodoForm> {
   final taskPriorityController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  //TODO: handle reset case
+  //TODO: Change all text feild to sprite components
+  //TODO: Change all forms to onSave way
+  //TODO: ADD new input like checkbox radio and counter
+  //TODO: validate all field on costom validation
+  //Todo: validate
   void handleAddNewNote() {
     widget.handleSubmit(taskNameController.text, taskDescController.text,
         int.parse(taskPriorityController.text));

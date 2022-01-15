@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
+//Components
+import 'Components/TaskCard.dart';
 import './Components/Form.dart';
 import './Types/note.dart';
-import 'dart:developer';
 
 void main() => runApp(MyApp());
 
@@ -25,13 +27,13 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
-  int counter = 0;
-
   static List<Note> noteList = [];
 
   void handleSubmit(String title, String desc, int priority) {
-    noteList.add(Note(title, desc, priority));
-    inspect(noteList);
+    setState(() {
+      noteList.add(Note(title, desc, priority));
+    });
+    // inspect(noteList);
   }
 
   @override
@@ -40,6 +42,13 @@ class _TodoPageState extends State<TodoPage> {
       child: Column(
         children: [
           TodoForm(handleSubmit),
+          Container(
+            child: Column(
+              children: noteList
+                  .map((e) => TaskCard(e.taskName, e.descripton, e.priority))
+                  .toList(),
+            ),
+          )
         ],
       ),
     );
